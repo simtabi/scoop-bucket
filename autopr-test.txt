@@ -1,0 +1,1 @@
+temporary end-to-end test of auto-merge-manifest.yml; removed by the next test branch
