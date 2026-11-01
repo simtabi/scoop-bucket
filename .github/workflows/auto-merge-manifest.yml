@@ -1,0 +1,61 @@
+name: Merge release manifests
+
+# The authama release (GoReleaser, with this repository's write deploy key) pushes
+# each Scoop manifest to its own branch, sshmgr-X.Y.Z, because master requires a
+# pull request and nothing bypasses that rule. This opens that pull request and
+# merges it once its checks pass, so master stays protected and every update
+# still lands through a pull request.
+#
+# Needs the repository (and organization) setting "Allow GitHub Actions to create
+# and approve pull requests". Pull requests opened with GITHUB_TOKEN start no
+# workflow runs, but GitHub App checks such as GitGuardian still report.
+on:
+  push:
+    branches: ["sshmgr-*", "authama-*"]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: manifest-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      BRANCH: ${{ github.ref_name }}
+    steps:
+      - name: Open the pull request
+        id: pr
+        run: |
+          base="${{ github.event.repository.default_branch }}"
+          number="$(gh pr list --head "$BRANCH" --base "$base" --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$number" ]; then
+            title="$(gh api "repos/$GH_REPO/commits/$BRANCH" --jq '.commit.message | split("\n")[0]')"
+            gh pr create --base "$base" --head "$BRANCH" --title "$title" \
+              --body "Opened automatically for \`$BRANCH\`, pushed by the release. Merged once its checks pass."
+            number="$(gh pr list --head "$BRANCH" --base "$base" --state open --json number --jq '.[0].number')"
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      # Checks from GitHub Apps register a few seconds after the pull request opens.
+      # A failing check stops here and leaves the pull request open for a human.
+      - name: Wait for checks
+        run: |
+          sleep 20
+          for _ in $(seq 1 40); do
+            out="$(gh pr checks "${{ steps.pr.outputs.number }}" --json bucket --jq '[.[].bucket] | join(" ")' 2>/dev/null || true)"
+            case " $out " in
+              *" fail "*|*" cancel "*) echo "a check failed: $out"; exit 1 ;;
+              *" pending "*) sleep 15 ;;
+              *) echo "checks: ${out:-none}"; break ;;
+            esac
+          done
+
+      - name: Merge
+        run: gh pr merge "${{ steps.pr.outputs.number }}" --merge --delete-branch
