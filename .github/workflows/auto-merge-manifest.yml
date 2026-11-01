@@ -47,9 +47,12 @@ jobs:
       # A failing check stops here and leaves the pull request open for a human.
       - name: Wait for checks
         run: |
+          # This job is itself a check on the branch's head commit; leave it out, or it
+          # waits on itself until the loop gives up.
           sleep 20
           for _ in $(seq 1 40); do
-            out="$(gh pr checks "${{ steps.pr.outputs.number }}" --json bucket --jq '[.[].bucket] | join(" ")' 2>/dev/null || true)"
+            out="$(gh pr checks "${{ steps.pr.outputs.number }}" --json bucket,workflow \
+              --jq "[.[] | select(.workflow != \"$GITHUB_WORKFLOW\") | .bucket] | join(\" \")" 2>/dev/null || true)"
             case " $out " in
               *" fail "*|*" cancel "*) echo "a check failed: $out"; exit 1 ;;
               *" pending "*) sleep 15 ;;
