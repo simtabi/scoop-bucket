@@ -1,0 +1,32 @@
+{
+    "version": "0.1.2",
+    "architecture": {
+        "32bit": {
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_386.zip",
+            "bin": [
+                "authama.exe",
+                "sshmgr.exe"
+            ],
+            "hash": "849a14e22e858f568c8e98abf6e9a2c16c76cd65ab791bfbfc9f43381ede0778"
+        },
+        "64bit": {
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_amd64.zip",
+            "bin": [
+                "authama.exe",
+                "sshmgr.exe"
+            ],
+            "hash": "7acdceea7958a4cf94e63bd1f75d45169ce2106338a725f2975373f7992c5e57"
+        },
+        "arm64": {
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_arm64.zip",
+            "bin": [
+                "authama.exe",
+                "sshmgr.exe"
+            ],
+            "hash": "9f6c19d5ba7ccb9e8807ce00d9509cf2a1acd359a60306cebe3d67d1747c1cf5"
+        }
+    },
+    "homepage": "https://github.com/simtabi/authama",
+    "license": "MIT",
+    "description": "Authentication Access Manager: SSH keys and config, and auth tokens for Composer, npm, Docker, git and netrc."
+}
