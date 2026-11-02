@@ -1,29 +1,29 @@
 {
-    "version": "0.1.2",
+    "version": "0.1.3",
     "architecture": {
         "32bit": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_386.zip",
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.3/authama_windows_386.zip",
             "bin": [
                 "authama.exe",
                 "sshmgr.exe"
             ],
-            "hash": "849a14e22e858f568c8e98abf6e9a2c16c76cd65ab791bfbfc9f43381ede0778"
+            "hash": "68bccfcf407ec5b85ecf96e1272ea0426994ba1fa1e148b2b9b2428c214173ed"
         },
         "64bit": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_amd64.zip",
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.3/authama_windows_amd64.zip",
             "bin": [
                 "authama.exe",
                 "sshmgr.exe"
             ],
-            "hash": "7acdceea7958a4cf94e63bd1f75d45169ce2106338a725f2975373f7992c5e57"
+            "hash": "ba4751363af28133a61305da1fda201572249a3cd1a8f4a3ddadc0d1e7b7d371"
         },
         "arm64": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.2/authama_windows_arm64.zip",
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.3/authama_windows_arm64.zip",
             "bin": [
-                "authama.exe",
-                "sshmgr.exe"
+                "sshmgr.exe",
+                "authama.exe"
             ],
-            "hash": "9f6c19d5ba7ccb9e8807ce00d9509cf2a1acd359a60306cebe3d67d1747c1cf5"
+            "hash": "6e2e08e2fa7523b0d77d6c92ace91a8917fadf6fbd19e7420e027b77c95e948f"
         }
     },
     "homepage": "https://github.com/simtabi/authama",
