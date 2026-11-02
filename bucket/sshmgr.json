@@ -1,32 +1,32 @@
 {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "architecture": {
         "32bit": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.0/sshmgr_windows_386.zip",
-            "bin": [
-                "sshmgr.exe",
-                "authama.exe"
-            ],
-            "hash": "5af9790aa086fcf1e94722c57568ac2afcf02a49c671014b708e2fc71d26d01e"
-        },
-        "64bit": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.0/sshmgr_windows_amd64.zip",
-            "bin": [
-                "sshmgr.exe",
-                "authama.exe"
-            ],
-            "hash": "ff58403cfc93809a67749124361a3a17cc5dd093bd9ee6881b49752755233b67"
-        },
-        "arm64": {
-            "url": "https://github.com/simtabi/authama/releases/download/v0.1.0/sshmgr_windows_arm64.zip",
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.1/sshmgr_windows_386.zip",
             "bin": [
                 "authama.exe",
                 "sshmgr.exe"
             ],
-            "hash": "55795b840604b6b10237a6e5fbee99f165d961628457c07eb7fc4baece8f2f45"
+            "hash": "c6570780f4a6c45eb7392d69bc40a775933357f874627b9d68a1ed0097003c74"
+        },
+        "64bit": {
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.1/sshmgr_windows_amd64.zip",
+            "bin": [
+                "sshmgr.exe",
+                "authama.exe"
+            ],
+            "hash": "8fd091b07a6f49331409ec1f2393e4eae089e40a2aacefe6dccc8e55fe233e46"
+        },
+        "arm64": {
+            "url": "https://github.com/simtabi/authama/releases/download/v0.1.1/sshmgr_windows_arm64.zip",
+            "bin": [
+                "sshmgr.exe",
+                "authama.exe"
+            ],
+            "hash": "404809d87b06e37e5122b9954148ce480dbf961cc6170c6edc4acec53f234ba0"
         }
     },
-    "homepage": "https://opensource.simtabi.com/products/simtabi/ssh-manager",
+    "homepage": "https://github.com/simtabi/authama",
     "license": "MIT",
     "description": "Authentication Access Manager: SSH keys and config, and auth tokens for Composer, npm, Docker, git and netrc."
 }
