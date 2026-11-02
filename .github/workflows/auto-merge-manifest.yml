@@ -1,7 +1,8 @@
 name: Merge release manifests
 
 # The authama release (GoReleaser, with this repository's write deploy key) pushes
-# each Scoop manifest to its own branch, sshmgr-X.Y.Z, because master requires a
+# each Scoop manifest to its own branch - authama-X.Y.Z for bucket/authama.json, and
+# sshmgr-X.Y.Z for the deprecated bucket/sshmgr.json - because master requires a
 # pull request and nothing bypasses that rule. This opens that pull request and
 # merges it once its checks pass, so master stays protected and every update
 # still lands through a pull request.
