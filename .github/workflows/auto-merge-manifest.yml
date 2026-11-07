@@ -1,9 +1,12 @@
 name: Merge release manifests
 
 # The authama release (GoReleaser, with this repository's write deploy key) pushes
-# each Scoop manifest to its own branch - authama-X.Y.Z for bucket/authama.json, and
-# sshmgr-X.Y.Z for the deprecated bucket/sshmgr.json - because master requires a
-# pull request and nothing bypasses that rule. This opens that pull request and
+# its Scoop manifest to its own branch, authama-X.Y.Z for bucket/authama.json,
+# because master requires a pull request and nothing bypasses that rule. authama
+# releases are on hold and the bucket holds no manifest until the next one; the
+# deprecated sshmgr manifest and its sshmgr-X.Y.Z branches are gone.
+#
+# This opens that pull request and
 # merges it once its checks pass, so master stays protected and every update
 # still lands through a pull request.
 #
@@ -12,7 +15,7 @@ name: Merge release manifests
 # workflow runs, but GitHub App checks such as GitGuardian still report.
 on:
   push:
-    branches: ["sshmgr-*", "authama-*"]
+    branches: ["authama-*"]
 
 permissions:
   contents: write
